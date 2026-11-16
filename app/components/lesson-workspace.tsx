@@ -9,7 +9,7 @@ import {
   CommentThread,
   type RenderedComment,
 } from "~/components/comment-thread";
-import { lessonWorkspace } from "~/modules/lesson-workspace";
+import { lessonWorkspace, type WorkspaceTab } from "~/modules/lesson-workspace";
 import { cn, formatRelativeTime } from "~/lib/utils";
 
 type SavedNote = { body: string; updatedAt: string } | null;
@@ -40,7 +40,7 @@ export function LessonWorkspace({
         <CardContent className="p-6">
           {/* Kept mounted so a half-written note or comment survives a tab switch. */}
           <TabsContent
-            value="discussion"
+            value={"discussion" satisfies WorkspaceTab}
             forceMount
             className="data-[state=inactive]:hidden"
           >
@@ -54,7 +54,7 @@ export function LessonWorkspace({
           </TabsContent>
           {signedIn && (
             <TabsContent
-              value="notes"
+              value={"notes" satisfies WorkspaceTab}
               forceMount
               className="data-[state=inactive]:hidden"
             >
@@ -77,26 +77,26 @@ function WorkspaceTabs({
   return (
     <div className="border-b px-6 pt-4">
       <TabsList className="h-auto gap-6 bg-transparent p-0">
-        <WorkspaceTab value="discussion">
+        <WorkspaceTabTrigger value="discussion">
           <MessageSquare />
           {discussionLabel}
-        </WorkspaceTab>
+        </WorkspaceTabTrigger>
         {showNotes && (
-          <WorkspaceTab value="notes">
+          <WorkspaceTabTrigger value="notes">
             <NotebookPen />
             My notes
-          </WorkspaceTab>
+          </WorkspaceTabTrigger>
         )}
       </TabsList>
     </div>
   );
 }
 
-function WorkspaceTab({
+function WorkspaceTabTrigger({
   value,
   children,
 }: {
-  value: string;
+  value: WorkspaceTab;
   children: React.ReactNode;
 }) {
   return (
