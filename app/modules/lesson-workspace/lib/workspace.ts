@@ -36,8 +36,10 @@ export function discussionLabel(comments: CountableComment[]): string {
 
 export function noteDraft(draft: string, saved: string | null): NoteDraft {
   const tooLong = draft.length > MAX_NOTE_LENGTH;
-  const empty = draft.trim().length === 0;
-  const unsaved = draft !== (saved ?? "");
+  const trimmed = draft.trim();
+  const empty = trimmed.length === 0;
+  // The server saves the note trimmed, so compare what it would store.
+  const unsaved = trimmed !== (saved ?? "");
   return {
     length: draft.length,
     max: MAX_NOTE_LENGTH,

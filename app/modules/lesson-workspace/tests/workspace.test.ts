@@ -61,11 +61,16 @@ describe("lessonWorkspace.noteDraft", () => {
 
   it("treats whitespace as empty", () => {
     const draft = lessonWorkspace.noteDraft("   \n", null);
-    expect(draft).toMatchObject({ empty: true, unsaved: true, canSave: false });
+    expect(draft).toMatchObject({ empty: true, canSave: false });
   });
 
   it("has nothing to save when the text matches the saved note", () => {
     const draft = lessonWorkspace.noteDraft("Result types", "Result types");
+    expect(draft).toMatchObject({ unsaved: false, canSave: false });
+  });
+
+  it("has nothing to save once the saved note is the draft trimmed", () => {
+    const draft = lessonWorkspace.noteDraft("Result types  \n", "Result types");
     expect(draft).toMatchObject({ unsaved: false, canSave: false });
   });
 
