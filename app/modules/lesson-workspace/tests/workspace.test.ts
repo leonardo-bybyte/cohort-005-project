@@ -3,11 +3,11 @@ import { lessonWorkspace, type CountableComment } from "../index";
 import { MAX_NOTE_LENGTH } from "~/lib/notes";
 
 describe("lessonWorkspace.openingTab", () => {
-  it("opens on the discussion when the learner has no note", () => {
+  it("opens on the discussion when the Student has no note", () => {
     expect(lessonWorkspace.openingTab(false)).toBe("discussion");
   });
 
-  it("opens on the notes when the learner has one", () => {
+  it("opens on the notes when the Student has one", () => {
     expect(lessonWorkspace.openingTab(true)).toBe("notes");
   });
 });

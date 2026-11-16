@@ -10,11 +10,11 @@ import {
 export type { CountableComment, NoteDraft, WorkspaceTab };
 
 /**
- * The panel under a lesson where a learner's private notes sit beside the
+ * The panel under a lesson where a Student's private notes sit beside the
  * course's Questions & Discussion, one tab each.
  */
 export const lessonWorkspace = {
-  /** Which tab opens first: notes when the learner already has some. */
+  /** Which tab opens first: notes when the Student already has some. */
   openingTab,
   /**
    * The discussion tab's label, with the count of comments and replies once

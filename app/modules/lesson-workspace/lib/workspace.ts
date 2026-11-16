@@ -12,7 +12,7 @@ export type NoteDraft = {
 };
 
 export function openingTab(hasNote: boolean): WorkspaceTab {
-  // A learner coming back to a lesson they took notes on wants their notes.
+  // A Student coming back to a lesson they took notes on wants their notes.
   return hasNote ? "notes" : "discussion";
 }
 
