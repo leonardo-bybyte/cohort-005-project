@@ -38,7 +38,12 @@ export function LessonWorkspace({
         />
 
         <CardContent className="p-6">
-          <TabsContent value="discussion">
+          {/* Kept mounted so a half-written note or comment survives a tab switch. */}
+          <TabsContent
+            value="discussion"
+            forceMount
+            className="data-[state=inactive]:hidden"
+          >
             <CommentThread
               comments={comments}
               currentUserId={currentUserId}
@@ -48,7 +53,11 @@ export function LessonWorkspace({
             />
           </TabsContent>
           {signedIn && (
-            <TabsContent value="notes">
+            <TabsContent
+              value="notes"
+              forceMount
+              className="data-[state=inactive]:hidden"
+            >
               <NoteEditor note={note} />
             </TabsContent>
           )}
